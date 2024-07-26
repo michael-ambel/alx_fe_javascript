@@ -4,7 +4,7 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 
 //localStorage.clear()
 
-const quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
+let quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 
 const addQuote = () => {
 
@@ -12,12 +12,14 @@ const addQuote = () => {
     const text = inputText.value;
 
     if(catagory && text){
-        const quotes = { 
+        const quotes = [{ 
             "catagory":catagory, 
             "text":text 
-        }
+        }]
         console.log(quotes);
-        quotess.push(quotes);
+        quotess = quotess.concat(quotes);
+        console.log(quotess);
+        //quotess.push(quotes);
         localStorage.setItem('stordQuotes', JSON.stringify(quotess))
     }
 
