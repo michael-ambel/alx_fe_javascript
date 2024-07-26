@@ -13,8 +13,8 @@ const addQuote = () => {
 
     if(catagory && text){
         const quotes = [{ 
-            "catagory":catagory, 
-            "text":text 
+            "text":text,
+            "catagory":catagory
         }]
         console.log(quotes);
         quotess = quotess.concat(quotes);
