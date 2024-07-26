@@ -1,24 +1,36 @@
-
-
-
-const quots = [
-    {"text": 'The only way to do great work is to love what you do.', 
-    "category":'Work Ethic'}, 
-    {"text": 'In the middle of difficulty lies opportunity.', 
-    "category":'Inspiration'}, 
-    {"text": 'The only person you are destined to become is the person you decide to be.', 
-    "category":'Motivational'}
-]
-
+const inputCategory = document.getElementById('newQuoteCategory');
+const inputText = document.getElementById('newQuoteText');
 const quoteDisplay = document.getElementById('quoteDisplay');
+
+//localStorage.clear()
+//const quotes = JSON.parse(localStorage.getItem('storedQuotes')) || [];
+//console.log(quotes);
+//const quotes =  [];
+
+const quotes = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 
 
 const addQuote = () => {
-    const newQuoteCategory = document.getElementById('newQuoteCategory').value;
-    const newQoteText = document.getElementById('newQuoteText').value;
-    const newQuote = document.createElement('p')
-    newQuote.textContent = newQoteText;
-    quoteDisplay.appendChild(newQuote);
+
+    const catagory = inputCategory.value;
+    const text = inputText.value;
+
+    if(catagory && text){
+        const newQuote = { 
+            catagory, 
+            text 
+        }
+        console.log(newQuote);
+        quotes.push(newQuote);
+        localStorage.setItem('stordQuotes', JSON.stringify(quotes))
+    }
+
+    const newQuoteElememt = document.createElement('p')
+    newQuoteElememt.textContent = newQuote.text;
+    quoteDisplay.appendChild(newQuoteElememt);
+
+    inputCategory.value = '';
+    inputText.value = '';
 }
 
 const createAddQuoteForm = () => {
@@ -26,11 +38,14 @@ const createAddQuoteForm = () => {
 }
 
 const showRandomQuote = () => {
-    const randomQuoteIndex = Math.floor(Math.random() * quots.length);
+    const randomQuoteIndex = Math.floor(Math.random() * quotes.length);
     console.log(randomQuoteIndex);
-    const random = quots[randomQuoteIndex].text;
+    const random = quotes[randomQuoteIndex];
     console.log(random);
-    quoteDisplay.innerHTML = random;
+    quoteDisplay.innerHTML = random.text;
+    
+    inputCategory.value = '';
+    inputText.value = '';
 }
 
 const showNewBtn = document.getElementById('newQuote');
