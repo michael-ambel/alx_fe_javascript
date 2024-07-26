@@ -5,7 +5,11 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 //localStorage.clear()
 
 let quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
+let quotes = [];
 
+const saveQuotes = () => {
+    localStorage.setItem('stordQuotes', JSON.stringify(quotes))
+};
 
 const addQuote = () => {
 
@@ -13,12 +17,12 @@ const addQuote = () => {
     const text = inputText.value;
     
     if(category && text){
-        const quotes = [{ 
+        quotes = [{ 
             "text":text,
             "category":category
         }]
         
-        quotess = [{"text":text, "category":category}]     
+        quotes = [{"text":text, "category":category}]     
         console.log(quotes);
         quotess = quotess.concat(quotes);
         console.log(quotess);
@@ -48,6 +52,17 @@ const showRandomQuote = () => {
     inputCategory.value = '';
     inputText.value = '';
 }
+
+function importFromJsonFile(event) {
+    const fileReader = new FileReader();
+    fileReader.onload = function(event) {
+      const importedQuotes = JSON.parse(event.target.result);
+      quotes.push(...importedQuotes);
+      saveQuotes();
+      alert('Quotes imported successfully!');
+    };
+    fileReader.readAsText(event.target.files[0]);
+  }
 
 const showNewBtn = document.getElementById('newQuote');
 
