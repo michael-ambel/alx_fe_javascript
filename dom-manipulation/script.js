@@ -6,18 +6,19 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 
 let quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 
-const catagory = inputCategory.value;
-const text = inputText.value;
-const quotes = [{text:text, catagory:catagory}]
+
 const addQuote = () => {
 
+    const category = inputCategory.value;
+    const text = inputText.value;
     
-
-    if(catagory && text){
+    if(category && text){
         const quotes = [{ 
             "text":text,
-            "catagory":catagory
+            "category":category
         }]
+        
+        quotess = [{"text":text, "category":category}]     
         console.log(quotes);
         quotess = quotess.concat(quotes);
         console.log(quotess);
