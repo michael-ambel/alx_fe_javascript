@@ -17,8 +17,8 @@ const addQuote = () => {
 
     if(catagory && text){
         const newQuote = { 
-            catagory, 
-            text 
+            "catagory":catagory, 
+            "text":text 
         }
         console.log(newQuote);
         quotes.push(newQuote);
