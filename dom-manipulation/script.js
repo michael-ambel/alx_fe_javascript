@@ -4,6 +4,10 @@ const addQuote = () => {
 
 }
 
+const createAddQuoteForm = () => {
+
+}
+
 const quots = [
     {"text": 'The only way to do great work is to love what you do.', 
     "category":'Work Ethic'}, 
