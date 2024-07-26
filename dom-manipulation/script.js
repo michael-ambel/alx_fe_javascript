@@ -16,12 +16,13 @@ const addQuote = () => {
     const text = inputText.value;
 
     if(catagory && text){
-        const newQuote = { 
+        const newQuote = [{ 
             "catagory":catagory, 
             "text":text 
-        }
+        }]
         console.log(newQuote);
-        quotes.push(newQuote);
+        quotes = quotes.concat(newQuote);
+        //quotes.push(newQuote);
         localStorage.setItem('stordQuotes', JSON.stringify(quotes))
     }
 
