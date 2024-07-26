@@ -6,7 +6,6 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 
 const quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 
-
 const addQuote = () => {
 
     const catagory = inputCategory.value;
