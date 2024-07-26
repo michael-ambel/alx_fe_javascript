@@ -5,11 +5,12 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 //localStorage.clear()
 
 let quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
-
+const catagory = inputCategory.value;
+const text = inputText.value;
+const quotes = [{"text":text, "catagory":catagory}]
 const addQuote = () => {
 
-    const catagory = inputCategory.value;
-    const text = inputText.value;
+    
 
     if(catagory && text){
         const quotes = [{ 
