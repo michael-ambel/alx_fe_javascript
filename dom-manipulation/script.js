@@ -19,7 +19,6 @@ const addQuote = () => {
     const newQuote = document.createElement('p')
     newQuote.textContent = newQoteText;
     quoteDisplay.appendChild(newQuote);
-
 }
 
 const createAddQuoteForm = () => {
