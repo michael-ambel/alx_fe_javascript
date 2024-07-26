@@ -3,11 +3,8 @@ const inputText = document.getElementById('newQuoteText');
 const quoteDisplay = document.getElementById('quoteDisplay');
 
 //localStorage.clear()
-//const quotes = JSON.parse(localStorage.getItem('storedQuotes')) || [];
-//console.log(quotes);
-//const quotes =  [];
 
-const quotes = JSON.parse(localStorage.getItem('stordQuotes')) || [];
+const quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 
 
 const addQuote = () => {
@@ -16,14 +13,13 @@ const addQuote = () => {
     const text = inputText.value;
 
     if(catagory && text){
-        const newQuote = [{ 
+        const quotes = { 
             "catagory":catagory, 
             "text":text 
-        }]
-        console.log(newQuote);
-        quotes = quotes.concat(newQuote);
-        //quotes.push(newQuote);
-        localStorage.setItem('stordQuotes', JSON.stringify(quotes))
+        }
+        console.log(quotes);
+        quotess.push(quotes);
+        localStorage.setItem('stordQuotes', JSON.stringify(quotess))
     }
 
     const newQuoteElememt = document.createElement('p')
@@ -39,9 +35,9 @@ const createAddQuoteForm = () => {
 }
 
 const showRandomQuote = () => {
-    const randomQuoteIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuoteIndex = Math.floor(Math.random() * quotess.length);
     console.log(randomQuoteIndex);
-    const random = quotes[randomQuoteIndex];
+    const random = quotess[randomQuoteIndex];
     console.log(random);
     quoteDisplay.innerHTML = random.text;
     
