@@ -8,7 +8,7 @@ let quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 
 const catagory = inputCategory.value;
 const text = inputText.value;
-const quotes = [{"text":text, "catagory":catagory}]
+const quots = [{"text":text, "catagory":catagory}]
 const addQuote = () => {
 
     
