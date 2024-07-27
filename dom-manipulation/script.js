@@ -133,3 +133,45 @@ const downQuote = document.getElementById('downQuote');
 
 showNewBtn.addEventListener('click', showRandomQuote);
 downQuote.addEventListener('click', downloadQuote);
+
+
+function fetchData() {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);   
+  
+        // Process the fetched data
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
+  
+  function postData(data) {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)   
+  
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Post successful:', data);
+    })
+    .catch(error => {
+      console.error('Error posting data:', error);
+    });
+  }
+  
+  function startPeriodicFetching(interval) {
+    setInterval(fetchData, interval);
+  }
+  
+  // Initial data fetch
+  fetchData();
+  
+  // Start periodic fetching (e.g., every 5 seconds)
+  startPeriodicFetching(5000);
