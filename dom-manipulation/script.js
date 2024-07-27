@@ -14,6 +14,12 @@ const categoryFilter = document.getElementById('categoryFilter')
 
 //add catagories
 const populateCategories = () => {
+    const newCatagory = quotess.map(quote => {
+        document.createElement('option').value = quote.category;
+        document.createElement('option').textContent = quote.category;
+    })
+
+
     quotess.forEach((quote) => {
         const newCatagory = document.createElement('option')
         newCatagory.value = quote.category;
