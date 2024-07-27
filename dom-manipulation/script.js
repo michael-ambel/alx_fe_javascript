@@ -6,6 +6,55 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 
 let quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 let quotes = [];
+let lastCatagory = localStorage.getItem('lastCatagory') || 'all';
+console.log(lastCatagory);
+const categoryFilter = document.getElementById('categoryFilter')
+
+
+
+//add catagories
+const catagoryLister = () => {
+    quotess.forEach((quote) => {
+        const newCatagory = document.createElement('option')
+        newCatagory.value = quote.category;
+        newCatagory.textContent = quote.category;
+
+        categoryFilter.appendChild(newCatagory);
+
+        categoryFilter.value = lastCatagory;
+        if(categoryFilter.value === quote.category){
+            const selectedQuote = document.createElement('p')
+            selectedQuote.textContent = quote.text;
+            quoteDisplay.appendChild(selectedQuote)
+        }
+    })
+}
+
+catagoryLister()
+
+
+
+//filter and disply quots
+const filterQuotes = () => {
+    quoteDisplay.innerHTML = null;
+    const selectedCatagory = categoryFilter.value;
+    localStorage.setItem('lastCatagory', selectedCatagory)
+    console.log(selectedCatagory);
+    quotess.forEach((quote) => {
+        const quoteCatagory = quote.category;
+
+        if(selectedCatagory === 'all'){
+            const selectedQuote = document.createElement('p')
+            selectedQuote.textContent = quote.text;
+            quoteDisplay.appendChild(selectedQuote)
+        }
+        else if (selectedCatagory === quoteCatagory){
+            const selectedQuote = document.createElement('p')
+            selectedQuote.textContent = quote.text;
+            quoteDisplay.appendChild(selectedQuote)
+        }
+    })
+}
 
 const saveQuotes = () => {
     localStorage.setItem('stordQuotes', JSON.stringify(quotess))
@@ -36,6 +85,7 @@ const addQuote = () => {
         console.log(quotess);
         //quotess.push(quotes);
         localStorage.setItem('stordQuotes', JSON.stringify(quotess))
+        catagoryLister();
     }
 
     const newQuoteElememt = document.createElement('p')
