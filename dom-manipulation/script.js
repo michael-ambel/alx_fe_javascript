@@ -135,7 +135,9 @@ showNewBtn.addEventListener('click', showRandomQuote);
 downQuote.addEventListener('click', downloadQuote);
 
 
-function fetchData() {
+
+
+function fetchQuotesFromServer() {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(response => response.json())
       .then(data => {
@@ -171,7 +173,7 @@ function fetchData() {
   }
   
   // Initial data fetch
-  fetchData();
+  fetchQuotesFromServer();
   
   // Start periodic fetching (e.g., every 5 seconds)
   startPeriodicFetching(5000);
