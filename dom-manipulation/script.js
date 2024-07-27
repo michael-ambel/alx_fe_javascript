@@ -141,7 +141,9 @@ async function fetchQuotesFromServer() {
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/todos');
       const data = await response.json();
-      console.log(data);   
+      const importedQuotes = JSON.parse(data);
+      quotess.push(...importedQuotes);
+      saveQuotes();
 
       // Process the fetched data
       return data; // Optional: return the data for further use
@@ -169,8 +171,8 @@ async function fetchQuotesFromServer() {
     });
   }
   
-  function startPeriodicFetching(interval) {
-    setInterval(fetchData, interval);
+  function syncQuotes() {
+    setInterval(fetchData, 5000);
   }
   
   // Initial data fetch
