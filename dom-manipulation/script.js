@@ -144,9 +144,7 @@ async function fetchQuotesFromServer() {
       const importedQuotes = JSON.parse(data);
       quotess.push(...importedQuotes);
       saveQuotes();
-
-      // Process the fetched data
-      return data; // Optional: return the data for further use
+      console.log("Quotes synced with server!");
     } catch (error) {
       console.error('Error fetching data:', error);
       throw error; // Re-throw the error for handling in the calling function
@@ -159,8 +157,7 @@ async function fetchQuotesFromServer() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)   
-  
+      body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => {
@@ -175,8 +172,6 @@ async function fetchQuotesFromServer() {
     setInterval(fetchData, 5000);
   }
   
-  // Initial data fetch
   fetchQuotesFromServer();
   
-  // Start periodic fetching (e.g., every 5 seconds)
-  startPeriodicFetching(5000);
+  syncQuotes();
