@@ -8,8 +8,18 @@ let quotess = JSON.parse(localStorage.getItem('stordQuotes')) || [];
 let quotes = [];
 
 const saveQuotes = () => {
-    localStorage.setItem('stordQuotes', JSON.stringify(quotes))
+    localStorage.setItem('stordQuotes', JSON.stringify(quotess))
 };
+
+const downloadQuote = () => {
+    const blob = new Blob([JSON.stringify(quotess)], {type: 'application/json'})
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'myQuotes.json'
+    link.click();
+    URL.revokeObjectURL(url);
+}
 
 const addQuote = () => {
 
@@ -20,9 +30,7 @@ const addQuote = () => {
         quotes = [{ 
             "text":text,
             "category":category
-        }]
-        
-        quotes = [{"text":text, "category":category}]     
+        }]  
         console.log(quotes);
         quotess = quotess.concat(quotes);
         console.log(quotess);
@@ -57,7 +65,7 @@ function importFromJsonFile(event) {
     const fileReader = new FileReader();
     fileReader.onload = function(event) {
       const importedQuotes = JSON.parse(event.target.result);
-      quotes.push(...importedQuotes);
+      quotess.push(...importedQuotes);
       saveQuotes();
       alert('Quotes imported successfully!');
     };
@@ -65,5 +73,7 @@ function importFromJsonFile(event) {
   }
 
 const showNewBtn = document.getElementById('newQuote');
+const downQuote = document.getElementById('downQuote');
 
 showNewBtn.addEventListener('click', showRandomQuote);
+downQuote.addEventListener('click', downloadQuote);
