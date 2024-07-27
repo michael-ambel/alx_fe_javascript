@@ -13,7 +13,7 @@ const categoryFilter = document.getElementById('categoryFilter')
 
 
 //add catagories
-const catagoryLister = () => {
+const populateCategories = () => {
     quotess.forEach((quote) => {
         const newCatagory = document.createElement('option')
         newCatagory.value = quote.category;
@@ -30,7 +30,7 @@ const catagoryLister = () => {
     })
 }
 
-catagoryLister()
+populateCategories()
 
 
 
@@ -85,7 +85,7 @@ const addQuote = () => {
         console.log(quotess);
         //quotess.push(quotes);
         localStorage.setItem('stordQuotes', JSON.stringify(quotess))
-        catagoryLister();
+        populateCategories();
     }
 
     const newQuoteElememt = document.createElement('p')
