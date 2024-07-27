@@ -43,18 +43,18 @@ populateCategories()
 //filter and disply quots
 const filterQuotes = () => {
     quoteDisplay.innerHTML = null;
-    const selectedCatagory = categoryFilter.value;
-    localStorage.setItem('lastCatagory', selectedCatagory)
-    console.log(selectedCatagory);
+    const selectedCategory = categoryFilter.value;
+    localStorage.setItem('lastCatagory', selectedCategory)
+    console.log(selectedCategory);
     quotess.forEach((quote) => {
         const quoteCatagory = quote.category;
 
-        if(selectedCatagory === 'all'){
+        if(selectedCategory === 'all'){
             const selectedQuote = document.createElement('p')
             selectedQuote.textContent = quote.text;
             quoteDisplay.appendChild(selectedQuote)
         }
-        else if (selectedCatagory === quoteCatagory){
+        else if (selectedCategory === quoteCatagory){
             const selectedQuote = document.createElement('p')
             selectedQuote.textContent = quote.text;
             quoteDisplay.appendChild(selectedQuote)
