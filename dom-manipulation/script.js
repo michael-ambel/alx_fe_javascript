@@ -157,11 +157,11 @@ async function fetchQuotesFromServer() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(quotess)
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Post successful:', data);
+      alert('Post successful:', quotess);
     })
     .catch(error => {
       console.error('Error posting data:', error);
@@ -169,7 +169,7 @@ async function fetchQuotesFromServer() {
   }
   
   function syncQuotes() {
-    setInterval(fetchData, 5000);
+    setInterval(fetchQuotesFromServer, 5000);
   }
   
   fetchQuotesFromServer();
