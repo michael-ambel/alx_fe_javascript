@@ -137,17 +137,18 @@ downQuote.addEventListener('click', downloadQuote);
 
 
 
-function fetchQuotesFromServer() {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);   
-  
-        // Process the fetched data
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+async function fetchQuotesFromServer() {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+      const data = await response.json();
+      console.log(data);   
+
+      // Process the fetched data
+      return data; // Optional: return the data for further use
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Re-throw the error for handling in the calling function
+    }
   }
   
   function postData(data) {
